@@ -43,11 +43,11 @@ void loop()
       Serial.println(y);
     }
   }
-  if (micros() - timeOld >= kppsTime)
-  {
-    timeOld = micros();
-    // draw_task();
-    Serial.println(c++);
-    c = c % 10000;
-  }
+  // if (micros() - timeOld >= kppsTime)
+  // {
+  //   timeOld = micros();
+  //   // draw_task();
+  //   Serial.println(c++);
+  //   c = c % 10000;
+  // }
 }

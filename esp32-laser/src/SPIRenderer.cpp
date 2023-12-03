@@ -23,7 +23,7 @@ void IRAM_ATTR SPIRenderer::SetPosition(int x, int y)
     t1.tx_data[0] = 0b11010000 | ((x >> 8) & 0xF);
     t1.tx_data[1] = x & 255;
     ret = spi_device_polling_transmit(spi, &t1);
-    printf("Set X Ret code is %d\n", ret);
+    // printf("Set X Ret code is %d\n", ret);
     // channel B
     spi_transaction_t t2 = {};
     t2.length = 16;
@@ -31,7 +31,7 @@ void IRAM_ATTR SPIRenderer::SetPosition(int x, int y)
     t2.tx_data[0] = 0b01010000 | ((y >> 8) & 0xF);
     t2.tx_data[1] = y & 255;
     ret = spi_device_polling_transmit(spi, &t2);
-    printf("Set Y Ret code is %d\n", ret);
+    // printf("Set Y Ret code is %d\n", ret);
 
     // DAC Load
     digitalWrite(PIN_NUM_LDAC, LOW);
@@ -67,9 +67,9 @@ void SPIRenderer::Start()
     };
     // Initialize the SPI bus
     ret = spi_bus_initialize(HSPI_HOST, &buscfg, 1);
-    printf("Ret code is %d\n", ret);
+    printf("spi_bus_initialize Ret: %d\n", ret);
     ret = spi_bus_add_device(HSPI_HOST, &devcfg, &spi);
-    printf("Ret code is %d\n", ret);
+    printf("spi_bus_add_device Ret: %d\n", ret);
 
     // xTaskCreatePinnedToCore(
     //     fileBufferLoop, "fileBufferHandle", 5000 // Stack size
